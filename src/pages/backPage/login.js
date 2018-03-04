@@ -1,8 +1,8 @@
 import React from 'react'
 import { Form, Input, Button, notification} from 'antd'
-import { browserHistory } from 'react-router'
+import { hashHistory } from 'react-router'
 
-import '../less/login.less'
+import '../../less/login.less'
 
 const FormItem = Form.Item;
 
@@ -23,7 +23,7 @@ class LoginPage extends React.Component {
             if (n === 'react' && p === 'react') {
                 // 表单的路由处理    
                 document.cookie = "nowKey=" + "home";
-                browserHistory.push('/');
+                hashHistory.push('/');
             } else {
                 this.openNotificationWithIcon('info');
             }
@@ -48,7 +48,8 @@ class LoginPage extends React.Component {
         const { getFieldDecorator } = this.props.form;      
         return (
             <div id="loginpagewrap">
-                <div id="loginWrap">                
+                <div id="loginWrap">
+                    <div id="loginHeader">用户登录</div>
                     <Form horizontal onSubmit={this.handleSubmit}>
                         <FormItem>
                             {getFieldDecorator('username', {
@@ -72,6 +73,8 @@ class LoginPage extends React.Component {
     }
 }
 
-let Login = Form.create()(LoginPage);
+let Login = Form.create()(
+    LoginPage
+);
 export default Login;
 

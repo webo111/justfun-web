@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
-import Topbar from '../../components/Topbar';
-import {Title} from '../../components/Title';
+import Topbar from '../components/Topbar';
+import Title from '../components/Title';
 
 export default class UserList extends React.Component {
     constructor(props){
@@ -15,20 +15,28 @@ export default class UserList extends React.Component {
             url:'/user/findAllUsers'
         })
         .done(function(res) {
-            let data = JSON.parse('{"name":"wemin"}');
-            alert(data.name);
+            let data = [{name:"wemin"}];//JSON.parse(res);
+            console.info(data[0].name);
             // 需要绑定this
             this.setState({
-                tData:data.data
+                tData:data
             })
         }.bind(this))
     }
+
     render() {
+        const userList = (
+            <ol>
+                {this.state.tData.map((u,i)=>
+                    <li key={i}>{u.name}</li>
+                )}
+            </ol>
+        );
         return(
             <div id="userList">
                 <Topbar/>
-                { Title("用户管理") }
-                this is userList.
+                <Title title="用户管理"/>
+                {userList}
             </div>
         );
     }

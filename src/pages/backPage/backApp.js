@@ -1,13 +1,12 @@
 import React from 'react';
 import Sidebar from './components/Sidebar';
-import Home from './pages/home';
 import './less/App.less';
 import 'antd/dist/antd.css';
 
-class App extends React.Component {
+class BackApp extends React.Component {
   render() {
     return (
-      <div className="App">
+      <div className="BackApp">
           <Sidebar/>
           <div id="rightWrap">
               {this.props.children}
@@ -17,4 +16,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default BackApp;
