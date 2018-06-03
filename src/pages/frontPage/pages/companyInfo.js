@@ -1,7 +1,12 @@
 import React from 'react';
+import { Route, Switch, Redirect, Link } from 'react-router-dom';
 import { Layout, Menu, Col, Row, Icon } from 'antd';
 import FrontHeader from '../components/FrontHeader';
-import ContentInfo from '../pages/contentInfo';
+
+import ContentInfo1 from './companyInfo/contentInfo1';
+import ContentInfo2 from './companyInfo/contentInfo2';
+import ContentInfo3 from './companyInfo/contentInfo3';
+import ContentInfo4 from './companyInfo/contentInfo4';
 
 const { Header, Footer, Content, Sider } = Layout;
 
@@ -30,27 +35,40 @@ export default class CompanyInfo extends React.Component {
                                     <Sider width={200} style={{ background: '#fff' }}>
                                         <Menu
                                             mode="inline"
-                                            defaultSelectedKeys={['1']}
+                                            defaultSelectedKeys={['companyInfo1']}
                                             defaultOpenKeys={['sub1']}
                                             style={{ height: '100%', borderRight: 0 }}
                                         >
                                             <Menu.Item key="companyInfo1">
-                                                公司动态
+                                                <Link to="/front/companyInfo/1">
+                                                    <span className="nav-text">公司动态</span>
+                                                </Link>
                                             </Menu.Item>
                                             <Menu.Item key="companyInfo2">
-                                                发展历程
+                                                <Link to="/front/companyInfo/2">
+                                                    <span className="nav-text">发展历程</span>
+                                                </Link>
                                             </Menu.Item>
                                             <Menu.Item key="companyInfo3">
-                                                管理团队
+                                                <Link to="/front/companyInfo/3">
+                                                    <span className="nav-text">管理团队</span>
+                                                </Link>
                                             </Menu.Item>
                                             <Menu.Item key="companyInfo4">
-                                                社会责任
+                                                <Link to="/front/companyInfo/4">
+                                                    <span className="nav-text">社会责任</span>
+                                                </Link>
                                             </Menu.Item>
                                         </Menu>
                                     </Sider>
                                     <Layout style={{ padding: '0' }}>
                                         <Content style={{ background: '#fff', margin: 0, minHeight: 280 }}>
-                                            <ContentInfo/>
+                                            <Switch>
+                                                <Route exact path="/front/companyInfo/1" component={ContentInfo1} />
+                                                <Route exact path="/front/companyInfo/2" component={ContentInfo2} />
+                                                <Route exact path="/front/companyInfo/3" component={ContentInfo3} />
+                                                <Route exact path="/front/companyInfo/4" component={ContentInfo4} />
+                                            </Switch>
                                         </Content>
                                     </Layout>
                                 </Layout>

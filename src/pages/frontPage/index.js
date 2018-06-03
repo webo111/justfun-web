@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout, Col, Row } from 'antd';
+import { Link } from 'react-router-dom';
 import FrontHeader from './components/FrontHeader';
 import Flexslider from './components/Flexslider';
 import ContentInfo from './pages/contentInfo';
@@ -13,7 +14,12 @@ export default class Index extends React.Component {
             lineHeight: '62px'
         }
     }
-
+    componentDidMount() {
+        console.info('应用访问路径');
+        console.info('/index.html#/app/dashboard/index');
+        console.info('/index.html#/front');
+        console.info('/index.html#/back');
+    }
     setLineHeight(v){
         this.setState({lineHeight: v});
     }

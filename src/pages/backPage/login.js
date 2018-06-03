@@ -23,7 +23,7 @@ class LoginPage extends React.Component {
             if (n === 'react' && p === 'react') {
                 // 表单的路由处理    
                 document.cookie = "nowKey=" + "home";
-                hashHistory.push('/');
+                hashHistory.push('/back');
             } else {
                 this.openNotificationWithIcon('info');
             }

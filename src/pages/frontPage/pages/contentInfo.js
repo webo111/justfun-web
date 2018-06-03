@@ -18,8 +18,8 @@ export default class ContentInfo extends React.Component {
                 <div style={{ padding: '30px' }}>
                     <Row gutter={24}>
                         <Col span={8}>
-                            <Card title="公司简介" extra={<a href="#/more">更多</a>} bordered={false}>
-                                Card content
+                            <Card bordered={false} title="公司简介" extra={<a href="#/more">更多</a>}>
+                                公司动态
                             </Card>
                         </Col>
                         <Col span={8}>

@@ -1,24 +1,25 @@
 import React from 'react';
-import { hashHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Menu, Icon } from 'antd';
 
+const SubMenu = Menu.SubMenu;
 
 export default class FrontHeader extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            lineHeight: '61px',
+            lineHeight: '60px',
+            current: ''
         }
     }
     onScrollHandle(event) {
-        const headerDom  = this.refs.headerDom;
         const scrollTop = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset;
         if(scrollTop > 10){
             this.setState({lineHeight: '48px'});
             this.props.onHanderScroll('48px');
         } else {
-            this.setState({lineHeight: '61px'});
-            this.props.onHanderScroll('61px');
+            this.setState({lineHeight: '60px'});
+            this.props.onHanderScroll('60px');
         }
     }
     componentDidMount() {
@@ -28,28 +29,19 @@ export default class FrontHeader extends React.Component {
         window.removeEventListener('scroll', this.onScrollHandle.bind(this));
     }
     handleClick = (e) => {
-        console.log('click ', e);
         this.setState({
-            current: e.key,
+            current: e.key
         });
-        if(e.key === 'companyInfo'){
-            hashHistory.push('/front/companyInfo');
-        } else if(e.key === 'companyCulture'){
-            hashHistory.push('/front/companyInfo');
-        } else if(e.key === 'businessSystem'){
-            hashHistory.push('/front/companyInfo');
-        } else if(e.key === 'investorRelations'){
-            hashHistory.push('/front/companyInfo');
-        }
-    }
-    goJustFun(){
-        hashHistory.push('/front');
     }
     render() {
         return(
-            <div id="Header" ref="headerDom">
+            <div id="frontHeader" ref="headerDom">
                 <div style={{float: 'left',width:280, fontSize:24}}>
-                    <span><a style={{color:'white',lineHeight: this.state.lineHeight}} onClick={this.goJustFun.bind(this)}>Just Fun</a></span>
+                    <span style={{color:'white',lineHeight: this.state.lineHeight}}>
+                        <Link to="/front">
+                            <span className="nav-text">Just Func</span>
+                        </Link>
+                    </span>
                 </div>
                 <div style={{float: 'right'}}>
                     <Menu
@@ -59,17 +51,37 @@ export default class FrontHeader extends React.Component {
                         style={{background: 'rgba(16, 142, 233, 1)',color:'white',fontSize:16,lineHeight: this.state.lineHeight}}
                     >
                         <Menu.Item key="companyInfo">
-                            公司信息
+                            <Link to="/front/companyInfo">
+                                <span className="nav-text">公司信息</span>
+                            </Link>
                         </Menu.Item>
                         <Menu.Item key="companyCulture">
-                            企业文化
+                            <Link to="/front/companyCulture">
+                                <span className="nav-text">企业文化</span>
+                            </Link>
                         </Menu.Item>
                         <Menu.Item key="businessSystem">
-                            业务体系
+                            <Link to="/front/businessSystem">
+                                <span className="nav-text">业务体系</span>
+                            </Link>
                         </Menu.Item>
                         <Menu.Item key="investorRelations">
-                            投资者关系
+                            <Link to="/front/investorRelations">
+                                <span className="nav-text">投资者关系</span>
+                            </Link>
                         </Menu.Item>
+                        <SubMenu key="control" title={<a href="javascript:void(0)">控制台</a>}>
+                            <Menu.Item key="control1">
+                                <Link to="/back">
+                                    <span className="nav-text">控制台 1</span>
+                                </Link>
+                            </Menu.Item>
+                            <Menu.Item key="control2">
+                                <Link to="/app/dashboard/index">
+                                    <span className="nav-text">控制台 2</span>
+                                </Link>
+                            </Menu.Item>
+                        </SubMenu>
                     </Menu>
                 </div>
             </div>
