@@ -6,4 +6,4 @@ npm install
 npm start
 
 
-![预览](https://webo111.github.io/justfun-web/)
+[预览](https://webo111.github.io/justfun-web/)
